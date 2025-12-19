@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { FaPlane, FaMountain, FaRoute, FaGlassCheers, FaCar, FaFacebook, FaInstagram, FaPaw, FaShieldAlt, FaHandsHelping } from 'react-icons/fa';
 
 export default function ServicesPage() {
@@ -171,6 +172,341 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+
+       <section className="py-16 bg-white">
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Cabs Fleet</h2>
+                  <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    Choose from our well-maintained fleet of vehicles for a comfortable journey
+                  </p>
+                </div>
+      
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {/* Swift Dzire */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/cab1.jpg" 
+                        alt="Swift Dzire" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Swift Dzire</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">12 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">CNG/DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">4+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Ertiga */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/Ertiga.jpeg" 
+                        alt="Ertiga" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Ertiga</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">15 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">CNG/DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">6+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Etios */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/Etios.jpeg" 
+                        alt="Etios" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Etios</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">13 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">CNG/DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">4+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Innova */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/innova.jpeg" 
+                        alt="Innova" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Innova</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">19 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">6+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Tavera */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/cel.jpeg" 
+                        alt="Tavera" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Tavera</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">19 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">9+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Traveller */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/Traveller.jpeg" 
+                        alt="Traveller" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Traveller</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">Contact Us</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">13/17/20 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Marazzo */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image 
+                        src="/images/marazzo.jpg" 
+                        alt="Marazzo" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Marazzo</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">16 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">6+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Innova Crysta */}
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gray-100">
+                      <Image
+                        src="/images/innova.jpg" 
+                        alt="Innova Crysta" 
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                        Available
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Crysta</h3>
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                          <p className="text-xs text-gray-500">Fare Rate</p>
+                          <p className="font-semibold text-blue-900">20 Rs/Km</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Fuel Type</p>
+                          <p className="font-semibold">DIESEL</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Seating</p>
+                          <p className="font-semibold">7+1 Seater</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">AC</p>
+                          <p className="font-semibold">Available</p>
+                        </div>
+                      </div>
+                      <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
 
 

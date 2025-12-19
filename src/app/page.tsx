@@ -110,27 +110,6 @@ const StarRating = ({ rating }: { rating: number }) => {
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    
-    const interval = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % services.length);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!isMounted) return null;
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % services.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? services.length - 1 : prev - 1));
-  };
-
   const [formData, setFormData] = useState({
     tripType: 'oneway',
     pickup: '',
@@ -145,6 +124,26 @@ export default function Home() {
     phone: '',
     message: ''
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+    
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % services.length);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % services.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? services.length - 1 : prev - 1));
+  };
+
+  if (!isMounted) return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -165,15 +164,15 @@ export default function Home() {
       case 'oneway':
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div>
-                <label className="block text-gray-700 text-sm font-medium mb-1">Pickup *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                  <FaMapMarkerAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
                   <input
                     type="text"
                     name="pickup"
-                    className="w-full p-2 pl-7 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Pickup location"
                     value={formData.pickup}
                     onChange={handleChange}
@@ -182,13 +181,13 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-medium mb-1">Drop *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Drop *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                  <FaMapMarkerAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
                   <input
                     type="text"
                     name="drop"
-                    className="w-full p-2 pl-7 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Drop location"
                     value={formData.drop}
                     onChange={handleChange}
@@ -197,14 +196,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -212,12 +211,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -230,14 +229,14 @@ export default function Home() {
       case 'round':
         return (
           <>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">Pickup Location *</label>
+            <div className="mb-2">
+              <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -245,14 +244,14 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -260,12 +259,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -273,14 +272,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Return Date *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Return Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="returnDate"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.returnDate}
                     onChange={handleChange}
                     required
@@ -288,12 +287,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Return Time *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Return Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="returnTime"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.returnTime}
                     onChange={handleChange}
                     required
@@ -306,14 +305,14 @@ export default function Home() {
       case 'local':
         return (
           <>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">Pickup Location *</label>
+            <div className="mb-2">
+              <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -321,14 +320,14 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -336,12 +335,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-3 border border-gray-300 rounded-lg"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -349,11 +348,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">Number of Days *</label>
+            <div className="mb-2">
+              <label className="block text-gray-700 text-xs font-medium mb-1">Number of Days *</label>
               <select 
                 name="rentalDays"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                 value={formData.rentalDays}
                 onChange={handleChange}
                 required
@@ -463,7 +462,7 @@ export default function Home() {
               key={index} 
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <div className="relative h-48 bg-gray-100">
+              <div className="relative h-48 bg-gray-100 m-[10px]">
                 <Image
                   src={cab.image}
                   alt={`${cab.name} - ${cab.brand}`}
@@ -611,7 +610,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 md:py-32 overflow-hidden">
+      {/* <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
         </div>
@@ -657,7 +656,140 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+      <div className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16 md:py-24">
+        <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left Content */}
+            <div className="lg:w-1/2">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                M.I CABS PUNE
+              </h1>
+              <p className="text-lg mb-6 text-blue-100">
+                Are you looking for cab services in Pune, then M.I Cabs is one of the best option for you. 
+                Get all types of rental vehicles at economical and affordable rates. Get heavy discount on 
+                advance booking of a cab for M.I Cabs Pune
+              </p>
+              
+              <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg mb-6 border-l-4 border-yellow-500">
+                <p className="font-bold text-lg mb-1">Special Discount On Pune Mumbai Cabs</p>
+                <p className="text-sm">
+                  MI Cabs Pune offers special discount on booking of Pune Mumbai Cabs. 
+                  Book a cab from Pune to Mumbai or Mumbai to Pune and get cabs at affordable rates.
+                </p>
+              </div>
+              
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg transition duration-300">
+                Call Us Now
+              </button>
+            </div>
+            
+            {/* Booking Form */}
+            <div className="lg:w-1/2 bg-white rounded-lg shadow-xl overflow-hidden">
+              <div className="p-3 sm:p-4">
+                <h2 className="text-lg font-bold text-gray-800 mb-3 text-center">Book Your Ride</h2>
+                <form onSubmit={handleSubmit} className="space-y-2">
+                  <div className="mb-2">
+                    <label className="block text-gray-700 text-xs font-medium mb-1">Trip Type *</label>
+                    <div className="relative">
+                      <select 
+                        name="tripType"
+                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                        value={formData.tripType}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="" disabled>Select</option>
+                        <option value="oneway" className="text-gray-900">One Way</option>
+                        <option value="round" className="text-gray-900">Round Trip</option>
+                        <option value="local" className="text-gray-900">Rental</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg className="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {renderFormFields()}
+                  
+                  {/* Contact Information */}
+                  <div className="border-t border-gray-200 pt-2 mt-2">
+                    <h3 className="text-xs font-semibold text-gray-800 mb-2">Contact Info</h3>
+                    <div className="grid grid-cols-1 gap-1.5 mb-1.5">
+                      <div>
+                        <label className="block text-gray-700 text-xs font-medium mb-1">Name *</label>
+                        <input
+                          type="text"
+                          name="name"
+                          className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Your name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-1.5">
+                        <div>
+                          <label className="block text-gray-700 text-xs font-medium mb-1">Email *</label>
+                          <div className="relative">
+                            <FaEnvelope className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                            <input
+                              type="email"
+                              name="email"
+                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-gray-700 text-xs font-medium mb-1">Phone *</label>
+                          <div className="relative">
+                            <FaPhoneAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                            <input
+                              type="tel"
+                              name="phone"
+                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mb-2">
+                      <label className="block text-gray-700 text-xs font-medium mb-1">Message</label>
+                      <textarea
+                        name="message"
+                        rows={1}
+                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Any special requirements?"
+                        value={formData.message}
+                        onChange={handleChange}
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-1.5 px-3 rounded-md transition duration-300 text-xs"
+                  >
+                    BOOK NOW
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -721,264 +853,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      
-      {/* Features Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-            }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We are committed to providing the best cab service experience
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-            }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our customers have to say
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div 
-                key={index}
-                className="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl mr-4">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  </div>
-                </div>
-                <StarRating rating={testimonial.rating} />
-                <p className="mt-4 text-gray-700 italic">"{testimonial.content}"</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div 
-            className="max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Book Your Next Ride?</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Experience the best cab service in Pune. Book now and enjoy a comfortable journey.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link 
-                href="/contact" 
-                className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                Book Now <FaArrowRight />
-              </Link>
-              <a 
-                href="tel:+918805051404" 
-                className="bg-transparent hover:bg-white/10 border-2 border-white text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaPhoneAlt /> +91 8805051404
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      {/* Hero Section with Booking Form */}
-      <div className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16 md:py-24">
-        <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:w-1/2">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                M.I CABS PUNE
-              </h1>
-              <p className="text-lg mb-6 text-blue-100">
-                Are you looking for cab services in Pune, then M.I Cabs is one of the best option for you. 
-                Get all types of rental vehicles at economical and affordable rates. Get heavy discount on 
-                advance booking of a cab for M.I Cabs Pune
-              </p>
-              
-              <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg mb-6 border-l-4 border-yellow-500">
-                <p className="font-bold text-lg mb-1">Special Discount On Pune Mumbai Cabs</p>
-                <p className="text-sm">
-                  MI Cabs Pune offers special discount on booking of Pune Mumbai Cabs. 
-                  Book a cab from Pune to Mumbai or Mumbai to Pune and get cabs at affordable rates.
-                </p>
-              </div>
-              
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg transition duration-300">
-                Call Us Now
-              </button>
-            </div>
-            
-            {/* Booking Form */}
-            <div className="lg:w-1/2 bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="p-4 sm:p-5">
-                <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Book Your Ride</h2>
-                <form onSubmit={handleSubmit} className="space-y-3">
-                  <div className="mb-3">
-                    <label className="block text-gray-700 text-sm font-medium mb-1">Choose Type Of Trip *</label>
-                    <div className="relative">
-                      <select 
-                        name="tripType"
-                        className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        value={formData.tripType}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="" disabled>Select trip type</option>
-                        <option value="oneway" className="text-gray-900">Oneway Trip</option>
-                        <option value="round" className="text-gray-900">Round Trip</option>
-                        <option value="local" className="text-gray-900">Rental Trip</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
 
-                  {renderFormFields()}
-                  
-                  {/* Contact Information */}
-                  <div className="border-t border-gray-200 pt-4 mt-4">
-                    <h3 className="text-md font-semibold text-gray-800 mb-3">Contact Information</h3>
-                    <div className="grid grid-cols-1 gap-2 mb-2">
-                      <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Name *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div>
-                          <label className="block text-gray-700 text-sm font-medium mb-1">Email *</label>
-                          <div className="relative">
-                            <FaEnvelope className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs" />
-                            <input
-                              type="email"
-                              name="email"
-                              className="w-full p-2 pl-7 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="Email"
-                              value={formData.email}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-gray-700 text-sm font-medium mb-1">Phone *</label>
-                          <div className="relative">
-                            <FaPhoneAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs" />
-                            <input
-                              type="tel"
-                              name="phone"
-                              className="w-full p-2 pl-7 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="Phone"
-                              value={formData.phone}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mb-3">
-                      <label className="block text-gray-700 text-sm font-medium mb-1">Message (Optional)</label>
-                      <textarea
-                        name="message"
-                        rows={1}
-                        className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Special requirements?"
-                        value={formData.message}
-                        onChange={handleChange}
-                      ></textarea>
-                    </div>
-                  </div>
 
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-1.5 px-4 rounded-lg transition duration-300 text-sm"
-                  >
-                    SUBMIT
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Our Daily Services Section */}
-      {renderDailyServices()}
-
-      {/* Our Cabs Fleet Section */}
-      <section className="py-16 bg-white">
+       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Cabs Fleet</h2>
@@ -993,7 +870,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/swift-dzire.jpg" 
+                  src="/images/cab1.jpg" 
                   alt="Swift Dzire" 
                   fill
                   className="object-cover"
@@ -1033,7 +910,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/ertiga.jpg" 
+                  src="/images/Ertiga.jpeg" 
                   alt="Ertiga" 
                   fill
                   className="object-cover"
@@ -1073,7 +950,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/etios.jpg" 
+                  src="/images/Etios.jpeg" 
                   alt="Etios" 
                   fill
                   className="object-cover"
@@ -1113,7 +990,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/innova.jpg" 
+                  src="/images/innova.jpeg" 
                   alt="Innova" 
                   fill
                   className="object-cover"
@@ -1153,7 +1030,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/tavera.jpg" 
+                  src="/images/cel.jpeg" 
                   alt="Tavera" 
                   fill
                   className="object-cover"
@@ -1193,7 +1070,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/traveller.jpg" 
+                  src="/images/Traveller.jpeg" 
                   alt="Traveller" 
                   fill
                   className="object-cover"
@@ -1273,7 +1150,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/innova-crysta.jpg" 
+                  src="/images/innova.jpg" 
                   alt="Innova Crysta" 
                   fill
                   className="object-cover"
@@ -1311,6 +1188,90 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Features Section */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
+            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              We are committed to providing the best cab service experience
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <motion.div 
+                key={index}
+                className="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Testimonials Section */}
+      
+      
+      {/* CTA Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div 
+            className="max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Book Your Next Ride?</h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Experience the best cab service in Pune. Book now and enjoy a comfortable journey.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link 
+                href="/contact" 
+                className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                Book Now <FaArrowRight />
+              </Link>
+              <a 
+                href="tel:+918805051404" 
+                className="bg-transparent hover:bg-white/10 border-2 border-white text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <FaPhoneAlt /> +91 8805051404
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      {/* Hero Section with Booking Form */}
+      
+
+      {/* Our Daily Services Section */}
+      {renderDailyServices()}
+
+      {/* Our Cabs Fleet Section */}
+      
 
       {/* Stats Section */}
       <div className="bg-gray-100 py-16">
@@ -1501,32 +1462,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-50 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Ready to book your ride?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Download our app or book online for the best rates and exclusive offers.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92v-18.53a1 1 0 01.609-.922zm14.575 9.186a.997.997 0 010 1.086l-1.5 2.598a.5.5 0 01-.433.25h-3.5v-8h3.5a.5.5 0 01.433.25l1.5 2.598z"/>
-                <path d="M18.25 7.5h-3.5v9h3.5a.5.5 0 00.5-.5V8a.5.5 0 00-.5-.5z"/>
-              </svg>
-              Download for Android
-            </button>
-            <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition duration-300 flex items-center justify-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.05 20.28c-.98.95-2.05.8-3 .08a11.54 11.54 0 01-3.5-3.13c-1.72-2.68-1.35-5.2-.14-5.78 1.6-.76 2.2-2.6 1.96-4.08-.2-1.25-1.3-2.4-2.84-2.7-1.88-.38-3.24.2-4.28.67.1-.63.2-1.24.3-1.86.18-1.03.36-2.09-.08-2.9-.23-.42-.6-.8-1.1-.8H2.3c-.23 0-.43.1-.57.27-.14.17-.2.4-.16.64C2.5 8.7 5.2 20.2 5.22 20.3c.06.3.2.6.42.83.2.23.48.36.77.36h3.44c.5 0 .9-.4.9-.9 0-.1 0-.2-.03-.3l-.9-5.62c1.7 2.6 4.3 5.2 6.5 6.3.5.2 1.1.2 1.6 0 .6-.3 1.1-.7 1.5-1.1.3-.3.2-.8-.2-1.1z"/>
-                <path d="M12.08 5.5c0 .7-.2 1.3-.5 1.9-.5.8-1.2 1.5-2.1 1.7-.1 0-.2.1-.3.1-.6 0-1.2-.5-1.2-1.2 0-.5.3-1 .7-1.4.5-.5 1.2-.8 1.9-.8h.5c.6 0 1 .5 1 1.7z"/>
-              </svg>
-              Download for iOS
-            </button>
-          </div>
-        </div>
-      </section>
+     
 
     </div>
   );

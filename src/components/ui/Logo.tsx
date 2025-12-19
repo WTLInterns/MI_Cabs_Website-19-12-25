@@ -23,7 +23,7 @@ const Logo: FC<LogoProps> = ({
 
   return (
     <Link href="/" className={`flex items-center ${className}`}>
-      <div className={`${currentSize.container} relative rounded-full overflow-hidden border-2 border-white shadow-md`}>
+      <div className={`${currentSize.container} relative rounded-full overflow-hidden border-2 border-white shadow-md`} style={{ height: currentSize.container.split(' ')[0] }}>
         <Image 
           src="/images/logo.jpg" 
           alt="MiCabs Logo"

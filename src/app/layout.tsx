@@ -15,8 +15,6 @@ export const metadata: Metadata = {
   description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
   keywords: ["cab service pune", "taxi service", "airport transfer", "pet taxi", "local cabs"],
   authors: [{ name: "MiCabs Team" }],
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#2563eb",
   openGraph: {
     title: "MiCabs - Reliable Cab Services in Pune",
     description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
@@ -31,6 +29,14 @@ export const metadata: Metadata = {
     description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
   },
 };
+
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#2563eb',
+  };
+}
 
 export default function RootLayout({
   children,

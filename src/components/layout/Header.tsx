@@ -22,9 +22,9 @@ export default function Header() {
    
       {/* Main Navigation */}
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="flex items-center">
+        <div className="flex items-center">
           <Logo className="h-12 w-auto" />
-        </Link>
+        </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden">
