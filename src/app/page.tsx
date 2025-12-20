@@ -907,7 +907,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-0 left-0 p-4">
                     <h3 className="text-xl font-bold text-white">{service.title}</h3>
-                    <p className="text-blue-100 text-sm">{service.description}</p>
+                    {/* <p className="text-blue-100 text-sm">{service.description}</p> */}
                   </div>
                 </div>
                 <div className="p-6">
