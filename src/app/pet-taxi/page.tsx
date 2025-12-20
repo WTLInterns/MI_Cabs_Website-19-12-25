@@ -1,10 +1,11 @@
 "use client";
 
 import { FaPaw, FaShieldAlt, FaHandsHelping, FaPhoneAlt, FaEnvelope, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Image from 'next/image';
 
 export default function PetTaxiPage() {
   const sliderRef = useRef<Slider>(null);
@@ -58,7 +59,7 @@ export default function PetTaxiPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Slider */}
-      <div className="relative h-[32rem] md:h-[40rem] overflow-hidden">
+      <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 z-10">
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -84,12 +85,16 @@ export default function PetTaxiPage() {
         
         <Slider ref={sliderRef} {...sliderSettings} className="h-full">
           {slides.map((slide, index) => (
-            <div key={index} className="h-[32rem] md:h-[40rem]">
-              <img 
-                src={slide.src}
-                alt={slide.alt}
-                className="w-full h-full object-cover"
-              />
+            <div key={index} className="h-full">
+              <div className="h-full w-full flex items-center justify-center relative">
+                <Image 
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                />
+              </div>
             </div>
           ))}
         </Slider>

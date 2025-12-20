@@ -17,13 +17,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-white shadow-lg sticky top-0 z-40">
       {/* Top Bar */}
    
       {/* Main Navigation */}
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <Logo className="h-12 w-auto" />
+          <Logo className="h-12 w-40" />
         </div>
 
         {/* Mobile menu button */}

@@ -99,9 +99,9 @@ export default function ServicesPage() {
       ac: "Available"
     },
     {
-      name: "Tavera",
-      type: "9+1 Seater",
-      rate: "19 Rs/Km",
+      name: "Kia Carens",
+      type: "6+1 Seater",
+      rate: "18 Rs/Km",
       fuel: "DIESEL",
       ac: "Available"
     },
@@ -113,10 +113,10 @@ export default function ServicesPage() {
       ac: "Available"
     },
     {
-      name: "Mahindra Marazzo",
+      name: "Innova Hycross",
       type: "6+1 Seater",
-      rate: "16 Rs/Km",
-      fuel: "DIESEL",
+      rate: "25 Rs/Km",
+      fuel: "PETROL-AUTOMATIC",
       ac: "Available"
     },
     {
@@ -174,6 +174,61 @@ export default function ServicesPage() {
       </section>
 
 
+     
+
+
+
+
+      {/* Fleet Section */}
+      {/* <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Cabs Fleet</h2>
+            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Choose from our well-maintained fleet of vehicles for a comfortable journey
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {fleet.map((vehicle, index) => (
+              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900">{vehicle.name}</h3>
+                      <p className="text-gray-600">{vehicle.type}</p>
+                    </div>
+                    <span className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                      Available
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Fare Rate</span>
+                      <span className="font-semibold text-blue-900">{vehicle.rate}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Fuel Type</span>
+                      <span className="font-semibold">{vehicle.fuel}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">AC</span>
+                      <span className="font-semibold">{vehicle.ac}</span>
+                    </div>
+                  </div>
+                  
+                  <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
        <section className="py-16 bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
@@ -189,7 +244,7 @@ export default function ServicesPage() {
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
                       <Image 
-                        src="/images/cab1.jpg" 
+                        src="/images/New1_dzire.jpg" 
                         alt="Swift Dzire" 
                         fill
                         className="object-cover"
@@ -309,7 +364,7 @@ export default function ServicesPage() {
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
                       <Image 
-                        src="/images/innova.jpeg" 
+                        src="/images/Innova_simple.jpg" 
                         alt="Innova" 
                         fill
                         className="object-cover"
@@ -345,12 +400,12 @@ export default function ServicesPage() {
                     </div>
                   </div>
       
-                  {/* Tavera */}
+                  {/* Kia Carens */}
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
                       <Image 
-                        src="/images/cel.jpeg" 
-                        alt="Tavera" 
+                        src="/images/New_5.jpg" 
+                        alt="Kia Carens" 
                         fill
                         className="object-cover"
                       />
@@ -360,7 +415,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="p-5">
                       <span className="text-xs text-gray-500">Micabs Pune</span>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">Tavera</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Kia Carens</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
                           <p className="text-xs text-gray-500">Fare Rate</p>
@@ -425,12 +480,12 @@ export default function ServicesPage() {
                     </div>
                   </div>
       
-                  {/* Marazzo */}
+                  {/* Innova Hycross */}
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
                       <Image 
-                        src="/images/marazzo.jpg" 
-                        alt="Marazzo" 
+                        src="/images/Innova_Hycross.jpg" 
+                        alt="Innova Hycross" 
                         fill
                         className="object-cover"
                       />
@@ -440,7 +495,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="p-5">
                       <span className="text-xs text-gray-500">Micabs Pune</span>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">Marazzo</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Hycross</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
                           <p className="text-xs text-gray-500">Fare Rate</p>
@@ -468,8 +523,8 @@ export default function ServicesPage() {
                   {/* Innova Crysta */}
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
-                      <Image
-                        src="/images/innova.jpg" 
+                      <Image 
+                        src="/images/New_8.jpg" 
                         alt="Innova Crysta" 
                         fill
                         className="object-cover"
@@ -507,8 +562,6 @@ export default function ServicesPage() {
                 </div>
               </div>
             </section>
-
-
 
       {/* About Section */}
       <section className="py-16 bg-gray-50">

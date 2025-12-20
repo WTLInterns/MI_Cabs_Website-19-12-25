@@ -1,11 +1,89 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaWhatsapp } from 'react-icons/fa';
 import { FaTaxi, FaCar, FaShuttleVan, FaStar, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaMoneyBillWave, FaClock, FaUserTie, FaShieldAlt, FaArrowRight, FaBus } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+
+// StatItem component with counting animation
+const StatItem = ({ value, label }: { value: string; label: string }) => {
+  const [count, setCount] = useState(0);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Start counting animation when element is in view
+          const numericValue = parseInt(value.replace(/\D/g, ''), 10) || 0;
+          let startTime: number | null = null;
+          const duration = 2000;
+          
+          const animate = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percentage = Math.min(progress / duration, 1);
+            
+            // Ease-out function for smooth animation
+            const easedProgress = 1 - Math.pow(1 - percentage, 3);
+            const currentCount = Math.floor(easedProgress * numericValue);
+            
+            setCount(currentCount);
+            
+            if (progress < duration) {
+              requestAnimationFrame(animate);
+            }
+          };
+          
+          requestAnimationFrame(animate);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    observerRef.current = observer;
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [value]);
+  
+  return (
+    <div ref={elementRef} className="text-center p-6 bg-white rounded-lg shadow-md">
+      <div className="text-3xl font-bold text-blue-900 mb-2">
+        {value.includes('+') ? `${count}+` : count}
+      </div>
+      <div className="text-gray-600">{label}</div>
+    </div>
+  );
+};
+
+// WhatsApp Floating Button Component
+const WhatsAppButton = () => {
+  const whatsappUrl = "https://wa.me/918805051404";
+  
+  return (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-green-500 hover:bg-green-600 shadow-lg flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-xl"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <FaWhatsapp className="text-xl md:text-2xl" />
+    </a>
+  );
+};
 
 // Animation variants
 const fadeInUp = {
@@ -22,34 +100,28 @@ const staggerContainer = {
     }
   }
 };
-
 const services = [
   {
-    title: 'Trimbakeshwar',
+    title: 'Trambakeshwar',
     image: '/images/Trambakeshwar.jpeg',
-    description: 'Pilgrimage tours to the sacred Trimbakeshwar Temple',
     icon: <FaMapMarkerAlt className="text-blue-500 text-2xl" />
   },
   {
-    title: 'Lavasa',
+    title: 'Lawasa',
     image: '/images/Lawasa.jpeg',
-    description: 'Scenic drives to the beautiful hill station',
     icon: <FaCar className="text-blue-500 text-2xl" />
   },
   {
     title: 'Mumbai',
     image: '/images/Mumbai.jpeg',
-    description: 'Comfortable rides to the city of dreams',
     icon: <FaTaxi className="text-blue-500 text-2xl" />
   },
   {
-    title: 'Mahabaleshwar',
+    title: 'Mahableshwar',
     image: '/images/Mahableshwar.jpeg',
-    description: 'Picturesque journeys to the queen of hill stations',
     icon: <FaMapMarkerAlt className="text-blue-500 text-2xl" />
   }
 ];
-
 const features = [
   {
     title: '24/7 Service',
@@ -172,7 +244,7 @@ export default function Home() {
                   <input
                     type="text"
                     name="pickup"
-                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Pickup location"
                     value={formData.pickup}
                     onChange={handleChange}
@@ -187,7 +259,7 @@ export default function Home() {
                   <input
                     type="text"
                     name="drop"
-                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Drop location"
                     value={formData.drop}
                     onChange={handleChange}
@@ -203,7 +275,7 @@ export default function Home() {
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -216,7 +288,7 @@ export default function Home() {
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -236,7 +308,7 @@ export default function Home() {
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -251,7 +323,7 @@ export default function Home() {
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -264,7 +336,7 @@ export default function Home() {
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -279,7 +351,7 @@ export default function Home() {
                   <input
                     type="date"
                     name="returnDate"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnDate}
                     onChange={handleChange}
                     required
@@ -292,7 +364,7 @@ export default function Home() {
                   <input
                     type="time"
                     name="returnTime"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnTime}
                     onChange={handleChange}
                     required
@@ -312,7 +384,7 @@ export default function Home() {
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -327,7 +399,7 @@ export default function Home() {
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -340,7 +412,7 @@ export default function Home() {
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md"
+                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -352,7 +424,7 @@ export default function Home() {
               <label className="block text-gray-700 text-xs font-medium mb-1">Number of Days *</label>
               <select 
                 name="rentalDays"
-                className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                 value={formData.rentalDays}
                 onChange={handleChange}
                 required
@@ -409,7 +481,7 @@ export default function Home() {
     },
     {
       brand: 'Micabs Pune',
-      name: 'Tavera',
+      name: 'Kia Carens',
       rate: '19 Rs/Km',
       fuel: 'DIESEL',
       seats: '9+1 Seater',
@@ -575,7 +647,7 @@ export default function Home() {
   const cars = [
     {
       name: 'Swift Dzire',
-      image: '/images/swift-dzire.jpg',
+      image: '/images/New1_dzire.jpg',
       rate: '12 Rs/Km',
       fuel: 'CNG/DIESEL',
       seats: '4+1 Seater',
@@ -598,9 +670,9 @@ export default function Home() {
       ac: 'Available'
     },
     {
-      name: 'Mahindra Marazzo',
+      name: 'Innova Hycross',
       image: '/images/marazzo.jpg',
-      rate: '16 Rs/Km',
+      rate: '25 Rs/Km',
       fuel: 'DIESEL',
       seats: '6+1 Seater',
       ac: 'Available'
@@ -687,16 +759,17 @@ export default function Home() {
             </div>
             
             {/* Booking Form */}
-            <div className="lg:w-1/2 bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="p-3 sm:p-4">
-                <h2 className="text-lg font-bold text-gray-800 mb-3 text-center">Book Your Ride</h2>
-                <form onSubmit={handleSubmit} className="space-y-2">
-                  <div className="mb-2">
+            <div className="lg:w-1/3 bg-white rounded-lg shadow-xl overflow-hidden">
+              <div className="p-2 sm:p-3">
+                <h2 className="text-base font-bold text-gray-800 mb-2 text-center">Book Your Ride</h2>
+                <p className="text-xs text-gray-500 mb-2 text-center">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
+                <form onSubmit={handleSubmit} className="space-y-1">
+                  <div className="mb-1">
                     <label className="block text-gray-700 text-xs font-medium mb-1">Trip Type *</label>
                     <div className="relative">
                       <select 
                         name="tripType"
-                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                         value={formData.tripType}
                         onChange={handleChange}
                         required
@@ -717,7 +790,7 @@ export default function Home() {
                   {renderFormFields()}
                   
                   {/* Contact Information */}
-                  <div className="border-t border-gray-200 pt-2 mt-2">
+                  {/* <div className="border-t border-gray-200 pt-2 mt-2">
                     <h3 className="text-xs font-semibold text-gray-800 mb-2">Contact Info</h3>
                     <div className="grid grid-cols-1 gap-1.5 mb-1.5">
                       <div>
@@ -725,7 +798,7 @@ export default function Home() {
                         <input
                           type="text"
                           name="name"
-                          className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           placeholder="Your name"
                           value={formData.name}
                           onChange={handleChange}
@@ -740,7 +813,7 @@ export default function Home() {
                             <input
                               type="email"
                               name="email"
-                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                               placeholder="Email"
                               value={formData.email}
                               onChange={handleChange}
@@ -755,7 +828,7 @@ export default function Home() {
                             <input
                               type="tel"
                               name="phone"
-                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                               placeholder="Phone"
                               value={formData.phone}
                               onChange={handleChange}
@@ -770,13 +843,13 @@ export default function Home() {
                       <textarea
                         name="message"
                         rows={1}
-                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                         placeholder="Any special requirements?"
                         value={formData.message}
                         onChange={handleChange}
                       ></textarea>
                     </div>
-                  </div>
+                  </div> */}
 
                   <button
                     type="submit"
@@ -839,7 +912,7 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">From ₹2,500</span>
+                    {/* <span className="text-gray-600">From ₹2,500</span> */}
                     <Link 
                       href="/contact" 
                       className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
@@ -870,7 +943,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/cab1.jpg" 
+                  src="/images/New1_dzire.jpg" 
                   alt="Swift Dzire" 
                   fill
                   className="object-cover"
@@ -990,7 +1063,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/innova.jpeg" 
+                  src="/images/Innova_simple.jpg" 
                   alt="Innova" 
                   fill
                   className="object-cover"
@@ -1026,12 +1099,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tavera */}
+            {/* Kia Carens */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/cel.jpeg" 
-                  alt="Tavera" 
+                  src="/images/New_5.jpg" 
+                  alt="Kia Carens" 
                   fill
                   className="object-cover"
                 />
@@ -1041,7 +1114,7 @@ export default function Home() {
               </div>
               <div className="p-5">
                 <span className="text-xs text-gray-500">Micabs Pune</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Tavera</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Kia Carens</h3>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
@@ -1106,12 +1179,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Marazzo */}
+            {/* Innova Hycross */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/marazzo.jpg" 
-                  alt="Marazzo" 
+                  src="/images/Innova_Hycross.jpg" 
+                  alt="Innova Hycross" 
                   fill
                   className="object-cover"
                 />
@@ -1121,7 +1194,7 @@ export default function Home() {
               </div>
               <div className="p-5">
                 <span className="text-xs text-gray-500">Micabs Pune</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Marazzo</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Hycross</h3>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
@@ -1150,7 +1223,7 @@ export default function Home() {
             <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="relative h-48 bg-gray-100">
                 <Image 
-                  src="/images/innova.jpg" 
+                  src="/images/New_8.jpg" 
                   alt="Innova Crysta" 
                   fill
                   className="object-cover"
@@ -1233,40 +1306,7 @@ export default function Home() {
       {/* Testimonials Section */}
       
       
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div 
-            className="max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Book Your Next Ride?</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Experience the best cab service in Pune. Book now and enjoy a comfortable journey.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link 
-                href="/contact" 
-                className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                Book Now <FaArrowRight />
-              </Link>
-              <a 
-                href="tel:+918805051404" 
-                className="bg-transparent hover:bg-white/10 border-2 border-white text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaPhoneAlt /> +91 8805051404
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
       {/* Hero Section with Booking Form */}
-      
-
       {/* Our Daily Services Section */}
       {renderDailyServices()}
 
@@ -1278,16 +1318,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-white rounded-lg shadow-md">
-                <div className="text-3xl font-bold text-blue-900 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.value}</div>
-              </div>
+              <StatItem key={index} value={stat.value} label={stat.label} />
             ))}
           </div>
         </div>
       </div>
-
-
       {/* Our Services Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16">
@@ -1464,6 +1499,7 @@ export default function Home() {
       {/* CTA Section */}
      
 
-    </div>
+    <WhatsAppButton />
+  </div>
   );
 }

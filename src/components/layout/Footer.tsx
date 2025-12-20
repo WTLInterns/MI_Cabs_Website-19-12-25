@@ -16,7 +16,8 @@ export default function Footer() {
                   alt="MiCabs Logo" 
                   width={100}
                   height={100}
-                  className="rounded-full  shadow-lg"
+                  className="rounded-full shadow-lg"
+                  style={{ width: '100%', height: 'auto' }}
                 />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">MiCabs Pune</h3>
@@ -100,14 +101,14 @@ export default function Footer() {
         </div>
         
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center">
+        {/* <div className="border-t border-gray-800 mt-8 pt-6 text-center">
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} MiCabs Pune. All rights reserved.
           </p>
           <p className="text-sm text-gray-500 mt-2">
             Proudly serving Pune with reliable transportation services
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
