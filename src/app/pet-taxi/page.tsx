@@ -20,8 +20,9 @@ export default function PetTaxiPage() {
     autoplaySpeed: 5000,
     pauseOnHover: true,
     arrows: false,
-    fade: true,
-    cssEase: 'ease-in-out'
+    fade: false,
+    cssEase: 'ease-in-out',
+    adaptiveHeight: false
   };
 
   const nextSlide = () => {
@@ -37,6 +38,8 @@ export default function PetTaxiPage() {
     { src: "/images/dog2.jpg", alt: "Dog enjoying the ride" },
     { src: "/images/dog3.jpg", alt: "Pet taxi service" }
   ];
+
+
 
   const features = [
     {
@@ -83,18 +86,16 @@ export default function PetTaxiPage() {
           </button>
         </div>
         
-        <Slider ref={sliderRef} {...sliderSettings} className="h-full">
+        <Slider ref={sliderRef} {...sliderSettings} className="h-full w-full">
           {slides.map((slide, index) => (
-            <div key={index} className="h-full">
-              <div className="h-full w-full flex items-center justify-center relative">
-                <Image 
-                  src={slide.src}
-                  alt={slide.alt}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                />
-              </div>
+            <div key={index} className="h-screen w-full relative">
+              <Image 
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
             </div>
           ))}
         </Slider>

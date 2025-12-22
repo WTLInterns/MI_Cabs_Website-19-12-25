@@ -1402,6 +1402,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pet Taxi Showcase */}
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pet Taxi Service</h2>
+            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Safe, comfortable, and stress-free transportation for your furry friends
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+              <Image 
+                src="/images/dog1.jpg" 
+                alt="Happy dog in car" 
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="font-bold text-lg">Safe Travel</h3>
+              </div>
+            </div>
+            
+            <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+              <Image 
+                src="/images/dog2.jpg" 
+                alt="Dog enjoying the ride" 
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="font-bold text-lg">Comfort Guaranteed</h3>
+              </div>
+            </div>
+            
+            <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+              <Image 
+                src="/images/dog3.jpg" 
+                alt="Pet taxi service" 
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="font-bold text-lg">Professional Care</h3>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link 
+              href="/pet-taxi" 
+              className="inline-flex items-center bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+            >
+              Learn More About Pet Taxi <FaArrowRight className="ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16">
