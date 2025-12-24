@@ -9,7 +9,7 @@ export default function AboutUsPage() {
       <div className="relative h-28 bg-white">
         <div className="absolute inset-0 bg-white/50 flex items-center justify-center">
           <div className="text-center text-black px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About M.I CABS</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">About MI CABS</h1>
           </div>
         </div>
       </div>
@@ -21,9 +21,9 @@ export default function AboutUsPage() {
             <div className="mb-12">
               <Image
                 src="/images/AboutUs.jpg"
-                alt="M.I CABS"
-                width={800}
-                height={450}
+                alt="MI CABS"
+                width={600}
+                height={350}
                 className="w-full h-auto rounded-lg shadow-lg mb-8"
               />
               <p className="text-gray-700 mb-6">

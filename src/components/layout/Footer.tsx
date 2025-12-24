@@ -13,14 +13,14 @@ export default function Footer() {
               <div className="flex items-center mb-3">
                 <Image 
                   src="/images/logo.jpg" 
-                  alt="MiCabs Logo" 
+                  alt="MI CABS Logo" 
                   width={100}
                   height={100}
                   className="rounded-full shadow-lg"
                   style={{ width: '100%', height: 'auto' }}
                 />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">MiCabs Pune</h3>
+              <h3 className="text-xl font-bold text-white mb-2">MI CABS Pune</h3>
               <p className="text-gray-300 text-sm leading-normal max-w-md">
                 Your trusted partner for reliable and affordable car rental services in Pune. We provide premium transportation solutions with a focus on comfort and punctuality.
               </p>
@@ -95,7 +95,7 @@ export default function Footer() {
             <div className="mt-6">
               <h5 className="font-semibold text-white mb-2">Working Hours</h5>
               <p className="text-gray-300">24/7 Service Available</p>
-              <p className="text-sm text-gray-400">For immediate assistance, call us anytime</p>
+              <p className="text-sm text-gray-400 mt-2">For immediate assistance, call us anytime</p>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function Footer() {
         {/* Copyright */}
         {/* <div className="border-t border-gray-800 mt-8 pt-6 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} MiCabs Pune. All rights reserved.
+            &copy; {new Date().getFullYear()} MI CABS Pune. All rights reserved.
           </p>
           <p className="text-sm text-gray-500 mt-2">
             Proudly serving Pune with reliable transportation services

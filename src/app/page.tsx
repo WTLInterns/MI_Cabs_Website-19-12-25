@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaHeart, FaWhatsapp } from 'react-icons/fa';
-import { FaTaxi, FaCar, FaShuttleVan, FaStar, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaMoneyBillWave, FaClock, FaUserTie, FaShieldAlt, FaArrowRight, FaBus } from 'react-icons/fa';
+import { FaTaxi, FaCar, FaShuttleVan, FaStar, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaMoneyBillWave, FaClock, FaUserTie, FaShieldAlt, FaArrowRight, FaBus, FaComments } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+
+// Components
+import ContactUsToggle from '@/components/sections/ContactUsToggle';
 
 // StatItem component with counting animation
 const StatItem = ({ value, label }: { value: string; label: string }) => {
@@ -183,7 +186,7 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [formData, setFormData] = useState({
-    tripType: 'oneway',
+    tripType: 'round',
     pickup: '',
     drop: '',
     date: '',
@@ -236,15 +239,15 @@ export default function Home() {
       case 'oneway':
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                  <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
                   <input
                     type="text"
                     name="pickup"
-                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                    className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Pickup location"
                     value={formData.pickup}
                     onChange={handleChange}
@@ -253,13 +256,13 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Drop *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Drop *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                  <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
                   <input
                     type="text"
                     name="drop"
-                    className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                    className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Drop location"
                     value={formData.drop}
                     onChange={handleChange}
@@ -268,14 +271,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -283,12 +286,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -301,14 +304,14 @@ export default function Home() {
       case 'round':
         return (
           <>
-            <div className="mb-2">
-              <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Location *</label>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-base font-medium mb-2">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -316,14 +319,14 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -331,12 +334,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -344,14 +347,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Return Date *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Return Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="returnDate"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnDate}
                     onChange={handleChange}
                     required
@@ -359,12 +362,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Return Time *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Return Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="returnTime"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnTime}
                     onChange={handleChange}
                     required
@@ -377,14 +380,14 @@ export default function Home() {
       case 'local':
         return (
           <>
-            <div className="mb-2">
-              <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Location *</label>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-base font-medium mb-2">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
+                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-1.5 pl-6 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -392,14 +395,14 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Date *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -407,12 +410,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-xs font-medium mb-1">Pickup Time *</label>
+                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-1.5 text-xs border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -420,11 +423,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mb-2">
-              <label className="block text-gray-700 text-xs font-medium mb-1">Number of Days *</label>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-base font-medium mb-2">Number of Days *</label>
               <select 
                 name="rentalDays"
-                className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                className="w-full p-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                 value={formData.rentalDays}
                 onChange={handleChange}
                 required
@@ -731,21 +734,24 @@ export default function Home() {
       </section> */}
 
 
-      <div className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16 md:py-24">
-        <div className="container mx-auto px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
+      {/* Hero Section - Full Screen */}
+      <div className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white min-h-screen flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-between w-full max-w-7xl mx-auto">
             {/* Left Content */}
-            <div className="lg:w-1/2">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                M.I CABS PUNE
+            <div className="lg:w-1/2 w-full max-w-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mb-6 leading-tight text-yellow-400">
+                MI CABS PUNE
               </h1>
-              <p className="text-lg mb-6 text-blue-100">
+              
+              <p className="text-lg mb-4 lg:mb-6 text-blue-100">
                 Are you looking for cab services in Pune, then M.I Cabs is one of the best option for you. 
                 Get all types of rental vehicles at economical and affordable rates. Get heavy discount on 
-                advance booking of a cab for M.I Cabs Pune
+                advance booking of a cab for MI CABS Pune
               </p>
               
-              <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg mb-6 border-l-4 border-yellow-500">
+              <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg mb-4 lg:mb-6 border-l-4 border-yellow-500">
                 <p className="font-bold text-lg mb-1">Special Discount On Pune Mumbai Cabs</p>
                 <p className="text-sm">
                   MI Cabs Pune offers special discount on booking of Pune Mumbai Cabs. 
@@ -753,23 +759,28 @@ export default function Home() {
                 </p>
               </div>
               
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg transition duration-300">
-                Call Us Now
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-8 rounded-lg transition duration-300 w-full sm:w-auto">
+                  Call Us Now
+                </button>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 w-full sm:w-auto">
+                  Book Your Ride
+                </button>
+              </div>
             </div>
             
             {/* Booking Form */}
-            <div className="lg:w-1/3 bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="p-2 sm:p-3">
-                <h2 className="text-base font-bold text-gray-800 mb-2 text-center">Book Your Ride</h2>
-                <p className="text-xs text-gray-500 mb-2 text-center">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
-                <form onSubmit={handleSubmit} className="space-y-1">
-                  <div className="mb-1">
-                    <label className="block text-gray-700 text-xs font-medium mb-1">Trip Type *</label>
+            <div id="booking-form" className="lg:w-2/5 w-full max-w-lg bg-white rounded-xl shadow-2xl overflow-hidden">
+              <div className="p-6 sm:p-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Book Your Ride</h2>
+                <p className="text-sm text-gray-500 mb-6 text-center">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="mb-4">
+                    <label className="block text-gray-700 text-base font-medium mb-2">Trip Type *</label>
                     <div className="relative">
                       <select 
                         name="tripType"
-                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                        className="w-full p-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                         value={formData.tripType}
                         onChange={handleChange}
                         required
@@ -779,8 +790,8 @@ export default function Home() {
                         <option value="round" className="text-gray-900">Round Trip</option>
                         <option value="local" className="text-gray-900">Rental</option>
                       </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg className="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
+                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
                         </svg>
                       </div>
@@ -788,72 +799,10 @@ export default function Home() {
                   </div>
 
                   {renderFormFields()}
-                  
-                  {/* Contact Information */}
-                  {/* <div className="border-t border-gray-200 pt-2 mt-2">
-                    <h3 className="text-xs font-semibold text-gray-800 mb-2">Contact Info</h3>
-                    <div className="grid grid-cols-1 gap-1.5 mb-1.5">
-                      <div>
-                        <label className="block text-gray-700 text-xs font-medium mb-1">Name *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        <div>
-                          <label className="block text-gray-700 text-xs font-medium mb-1">Email *</label>
-                          <div className="relative">
-                            <FaEnvelope className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
-                            <input
-                              type="email"
-                              name="email"
-                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
-                              placeholder="Email"
-                              value={formData.email}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-gray-700 text-xs font-medium mb-1">Phone *</label>
-                          <div className="relative">
-                            <FaPhoneAlt className="absolute left-1.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-[10px]" />
-                            <input
-                              type="tel"
-                              name="phone"
-                              className="w-full p-1.5 pl-5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
-                              placeholder="Phone"
-                              value={formData.phone}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <label className="block text-gray-700 text-xs font-medium mb-1">Message</label>
-                      <textarea
-                        name="message"
-                        rows={1}
-                        className="w-full p-1.5 text-xs border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
-                        placeholder="Any special requirements?"
-                        value={formData.message}
-                        onChange={handleChange}
-                      ></textarea>
-                    </div>
-                  </div> */}
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-900 hover:bg-blue-800 text-white font-medium py-1.5 px-3 rounded-md transition duration-300 text-xs"
+                    className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105"
                   >
                     BOOK NOW
                   </button>
@@ -1263,7 +1212,7 @@ export default function Home() {
       </section>
       
       {/* Features Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      {/* <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -1301,7 +1250,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       
       {/* Testimonials Section */}
       
@@ -1563,6 +1512,7 @@ export default function Home() {
      
 
     <WhatsAppButton />
+    <ContactUsToggle />
   </div>
   );
 }

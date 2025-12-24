@@ -3,7 +3,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 First, run the development server:
-
 ```bash
 npm run dev
 # or
@@ -20,10 +19,28 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+To use the pet taxi booking feature, you need to set up Gmail SMTP credentials:
+
+1. Copy the `.env.example` file to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+2. Fill in your Gmail credentials in `.env.local`:
+   - `GMAIL_USER`: Your Gmail address
+   - `GMAIL_APP_PASSWORD`: An app-specific password (not your regular Gmail password)
+
+To generate an app password for Gmail:
+1. Enable 2-factor authentication on your Google account
+2. Go to your Google Account settings
+3. Navigate to Security > 2-Step Verification > App passwords
+4. Generate a new app password for "Mail"
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
-
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 

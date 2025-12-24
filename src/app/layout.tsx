@@ -11,25 +11,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MiCabs - Reliable Cab Services in Pune",
+  title: "MI CABS - Reliable Cab Services in Pune",
   description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
   keywords: ["cab service pune", "taxi service", "airport transfer", "pet taxi", "local cabs"],
-  authors: [{ name: "MiCabs Team" }],
+  authors: [{ name: "MI CABS Team" }],
   openGraph: {
-    title: "MiCabs - Reliable Cab Services in Pune",
+    title: "MI CABS - Reliable Cab Services in Pune",
     description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
     url: "https://micabspune.com",
-    siteName: "MiCabs",
+    siteName: "MI CABS",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MiCabs - Reliable Cab Services in Pune",
+    title: "MI CABS - Reliable Cab Services in Pune",
     description: "Book reliable and affordable cab services in Pune. 24/7 availability, pet-friendly cabs, and professional drivers.",
   },
 };
-
 export function generateViewport() {
   return {
     width: 'device-width',

@@ -124,7 +124,7 @@ const Home = () => {
             {/* Left Content */}
             <div className="lg:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                M.I CABS PUNE
+                MI CABS PUNE
               </h1>
               <p className="text-lg mb-6 text-blue-100">
                 Are you looking for cab services in Pune? M.I Cabs is one of the best options for you. 

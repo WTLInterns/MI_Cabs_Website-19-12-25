@@ -8,7 +8,7 @@ export default function ServicesPage() {
     {
       icon: <FaPlane className="text-5xl text-blue-900 mb-4" />,
       title: "Airport Pickup and Drop",
-      description: "Micabs offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, Micabs ensures a smooth and hassle-free journey for its customers.",
+      description: "M.I CABS offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, M.I CABS ensures a smooth and hassle-free journey for its customers.",
       features: [
         "Prompt Airport Pickup and Drop-off",
         "Wide Range of Vehicle Options",
@@ -22,7 +22,7 @@ export default function ServicesPage() {
     {
       icon: <FaMountain className="text-5xl text-blue-900 mb-4" />,
       title: "Hillstation Packages",
-      description: "Experience the breathtaking beauty of nature with Micabs Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
+      description: "Experience the breathtaking beauty of nature with M.I CABS Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
       features: [
         "Diverse range of hill station destinations",
         "Customizable packages",
@@ -34,7 +34,7 @@ export default function ServicesPage() {
     {
       icon: <FaRoute className="text-5xl text-blue-900 mb-4" />,
       title: "Outstation Booking",
-      description: "Micabs offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, Micabs ensures a seamless and enjoyable journey to your desired destination.",
+      description: "M.I CABS offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, M.I CABS ensures a seamless and enjoyable journey to your desired destination.",
       features: [
         "Wide Range of Vehicles",
         "Professional and Experienced Drivers",
@@ -73,8 +73,8 @@ export default function ServicesPage() {
     {
       name: "Swift Dzire",
       type: "4+1 Seater",
-      rate: "12 Rs/Km",
-      fuel: "CNG/DIESEL",
+      rate: "13 Rs/Km",
+      fuel: "CNG/PETROL",
       ac: "Available"
     },
     {
@@ -87,14 +87,14 @@ export default function ServicesPage() {
     {
       name: "Etios",
       type: "4+1 Seater",
-      rate: "13 Rs/Km",
+      rate: "14 Rs/Km",
       fuel: "CNG/DIESEL",
       ac: "Available"
     },
     {
       name: "Innova",
       type: "6+1 Seater",
-      rate: "19 Rs/Km",
+      rate: "20 Rs/Km",
       fuel: "DIESEL",
       ac: "Available"
     },
@@ -122,7 +122,7 @@ export default function ServicesPage() {
     {
       name: "Innova Crysta",
       type: "7+1 Seater",
-      rate: "20 Rs/Km",
+      rate: "21 Rs/Km",
       fuel: "DIESEL",
       ac: "Available"
     }
@@ -174,62 +174,7 @@ export default function ServicesPage() {
       </section>
 
 
-     
-
-
-
-
-      {/* Fleet Section */}
-      {/* <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Cabs Fleet</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Choose from our well-maintained fleet of vehicles for a comfortable journey
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {fleet.map((vehicle, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">{vehicle.name}</h3>
-                      <p className="text-gray-600">{vehicle.type}</p>
-                    </div>
-                    <span className="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
-                      Available
-                    </span>
-                  </div>
-                  
-                  <div className="space-y-3 mb-6">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Fare Rate</span>
-                      <span className="font-semibold text-blue-900">{vehicle.rate}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Fuel Type</span>
-                      <span className="font-semibold">{vehicle.fuel}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">AC</span>
-                      <span className="font-semibold">{vehicle.ac}</span>
-                    </div>
-                  </div>
-                  
-                  <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
-                    Book Now
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-       <section className="py-16 bg-white">
+      <section className="py-16 bg-white">
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Cabs Fleet</h2>
@@ -254,7 +199,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Swift Dzire</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -294,7 +239,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Ertiga</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -334,7 +279,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Etios</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -374,7 +319,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -414,7 +359,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Kia Carens</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -454,7 +399,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Traveller</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -494,7 +439,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Hycross</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -534,7 +479,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">Micabs Pune</span>
+                      <span className="text-xs text-gray-500">MI CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Crysta</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -567,9 +512,9 @@ export default function ServicesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">About MiCabs Pune</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">About MI CABS Pune</h2>
             <p className="text-lg text-gray-700 mb-8">
-              M.I Cabs Pune is a car rental company which provides cars on rent in Pune at cheaper and affordable rates. 
+              MI CABS Pune is a car rental company which provides cars on rent in Pune at cheaper and affordable rates. 
               As a leading car rental company in Pune, we provide special discounts and premium services to ensure 
               your travel experience is comfortable and hassle-free.
             </p>

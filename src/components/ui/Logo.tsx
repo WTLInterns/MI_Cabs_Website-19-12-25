@@ -14,28 +14,50 @@ const Logo: FC<LogoProps> = ({
   size = 'md' 
 }) => {
   const sizeClasses = {
-    sm: { container: 'h-10 w-10', text: 'text-xl', tagline: 'text-xs' },
-    md: { container: 'h-12 w-12', text: 'text-2xl', tagline: 'text-xs' },
-    lg: { container: 'h-16 w-16', text: 'text-3xl', tagline: 'text-sm' },
+    sm: { 
+      container: 'h-10 w-10', 
+      text: 'text-lg font-semibold', 
+      tagline: 'text-[10px]',
+      spacing: 'ml-2.5'
+    },
+    md: { 
+      container: 'h-12 w-12', 
+      text: 'text-xl font-semibold', 
+      tagline: 'text-xs',
+      spacing: 'ml-3'
+    },
+    lg: { 
+      container: 'h-16 w-16', 
+      text: 'text-2xl font-semibold', 
+      tagline: 'text-sm',
+      spacing: 'ml-3.5'
+    },
   };
 
   const currentSize = sizeClasses[size] || sizeClasses.md;
 
   return (
     <Link href="/" className={`flex items-center ${className}`}>
-      <div className={`${currentSize.container} relative rounded-full overflow-hidden border-2 border-white shadow-md`} style={{ width: '100%', height: '100%' }}>
-        <Image 
-          src="/images/logo.jpg" 
-          alt="MiCabs Logo"
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 48px, 64px"
-        />
+      <div className={`${currentSize.container} relative flex-shrink-0`}>
+        <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-md">
+          <Image 
+            src="/images/logo.jpg" 
+            alt="MI CABS Logo"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 48px, 64px"
+            priority
+          />
+        </div>
       </div>
-      <div className="ml-3">
-        <h1 className={`${currentSize.text} font-bold text-blue-900`}>MiCabs</h1>
+      <div className={`${currentSize.spacing} flex flex-col justify-center`}>
+        <h1 className={`${currentSize.text} text-blue-900 leading-tight tracking-tight`}>
+          MI CABS
+        </h1>
         {showTagline && (
-          <p className={`${currentSize.tagline} text-gray-600`}>Your Travel Partner</p>
+          <p className={`${currentSize.tagline} text-gray-600 mt-0.5`}>
+            Your Travel Partner
+          </p>
         )}
       </div>
     </Link>

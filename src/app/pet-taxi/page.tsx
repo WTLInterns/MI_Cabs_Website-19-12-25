@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-
+import BookingForm from '@/components/sections/BookingForm';
 export default function PetTaxiPage() {
   const sliderRef = useRef<Slider>(null);
   
@@ -181,6 +181,9 @@ export default function PetTaxiPage() {
           </div>
         </div>
       </div>
+
+      {/* Booking Form */}
+      <BookingForm />
     </div>
   );
 }
