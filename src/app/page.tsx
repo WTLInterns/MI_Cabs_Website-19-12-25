@@ -201,6 +201,7 @@ export default function Home() {
     message: ''
   });
   const [emailStatus, setEmailStatus] = useState<{status: 'idle' | 'loading' | 'success' | 'error', message: string}>({status: 'idle', message: ''});
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -211,6 +212,10 @@ export default function Home() {
     
     return () => clearInterval(interval);
   }, []);
+
+  const openBookingModal = () => {
+    setIsBookingModalOpen(true);
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % services.length);
@@ -250,10 +255,11 @@ export default function Home() {
         return_date: formData.returnDate || 'N/A', // For one-way trip, return date is not applicable
         return_time: formData.returnTime || 'N/A', // For one-way trip, return time is not applicable
         rental_days: formData.rentalDays,
+        user_name: formData.name,
         user_email: formData.email || 'N/A',
-        user_phone: formData.phone || 'N/A',
+        user_phone: formData.phone,
         special_instructions: formData.message || 'N/A',
-        reply_to: formData.email || process.env.NEXT_PUBLIC_OFFICIAL_EMAIL || 'your-email@example.com'
+        reply_to: formData.phone || process.env.NEXT_PUBLIC_OFFICIAL_EMAIL || 'your-email@example.com'
       };
       
       // Send email using EmailJS
@@ -280,6 +286,10 @@ export default function Home() {
           phone: '',
           message: ''
         });
+        // Close modal after successful submission
+        setTimeout(() => {
+          setIsBookingModalOpen(false);
+        }, 2000); // Close after 2 seconds to allow user to see success message
       } else {
         throw new Error(`Email sending failed with status: ${response.status}`);
       }
@@ -294,15 +304,15 @@ export default function Home() {
       case 'oneway':
         return (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
+                  <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
                   <input
                     type="text"
                     name="pickup"
-                    className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                    className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Pickup location"
                     value={formData.pickup}
                     onChange={handleChange}
@@ -311,13 +321,13 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Drop *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Drop *</label>
                 <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
+                  <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
                   <input
                     type="text"
                     name="drop"
-                    className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                    className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                     placeholder="Drop location"
                     value={formData.drop}
                     onChange={handleChange}
@@ -326,14 +336,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -341,12 +351,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -359,14 +369,14 @@ export default function Home() {
       case 'round':
         return (
           <>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-base font-medium mb-2">Pickup Location *</label>
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
+                <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -374,14 +384,29 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1.5">Drop Location *</label>
+              <div className="relative">
+                <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                <input
+                  type="text"
+                  name="drop"
+                  className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  placeholder="Enter drop location"
+                  value={formData.drop}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -389,12 +414,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -402,14 +427,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Return Date *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Return Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="returnDate"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnDate}
                     onChange={handleChange}
                     required
@@ -417,12 +442,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Return Time *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Return Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="returnTime"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.returnTime}
                     onChange={handleChange}
                     required
@@ -435,14 +460,14 @@ export default function Home() {
       case 'local':
         return (
           <>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-base font-medium mb-2">Pickup Location *</label>
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Location *</label>
               <div className="relative">
-                <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-base" />
+                <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
                 <input
                   type="text"
                   name="pickup"
-                  className="w-full p-4 pl-10 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                   placeholder="Enter pickup location"
                   value={formData.pickup}
                   onChange={handleChange}
@@ -450,14 +475,29 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1.5">Drop Location *</label>
+              <div className="relative">
+                <FaMapMarkerAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                <input
+                  type="text"
+                  name="drop"
+                  className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                  placeholder="Enter drop location"
+                  value={formData.drop}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Date *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Date *</label>
                 <div className="relative">
                   <input
                     type="date"
                     name="date"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.date}
                     onChange={handleChange}
                     required
@@ -465,12 +505,12 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 text-base font-medium mb-2">Pickup Time *</label>
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Pickup Time *</label>
                 <div className="relative">
                   <input
                     type="time"
                     name="time"
-                    className="w-full p-4 text-base border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     value={formData.time}
                     onChange={handleChange}
                     required
@@ -478,11 +518,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-base font-medium mb-2">Number of Days *</label>
+            <div className="mb-3">
+              <label className="block text-gray-700 text-sm font-medium mb-1.5">Number of Days *</label>
               <select 
                 name="rentalDays"
-                className="w-full p-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                 value={formData.rentalDays}
                 onChange={handleChange}
                 required
@@ -626,7 +666,10 @@ export default function Home() {
                     <p className="font-semibold">{cab.ac}</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -668,7 +711,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-5 bg-white">
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -826,16 +872,16 @@ export default function Home() {
             
             {/* Booking Form */}
             <div id="booking-form" className="lg:w-2/5 w-full max-w-lg bg-white rounded-xl shadow-2xl overflow-hidden">
-              <div className="p-6 sm:p-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Book Your Ride</h2>
-                <p className="text-sm text-gray-500 mb-6 text-center">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="mb-4">
-                    <label className="block text-gray-700 text-base font-medium mb-2">Trip Type *</label>
+              <div className="p-4 sm:p-6">
+                <h2 className="text-xl font-bold text-gray-800 mb-3 text-center">Book Your Ride</h2>
+                <p className="text-xs text-gray-500 mb-4 text-center">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <div className="mb-3">
+                    <label className="block text-gray-700 text-sm font-medium mb-1.5">Trip Type *</label>
                     <div className="relative">
                       <select 
                         name="tripType"
-                        className="w-full p-4 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                        className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                         value={formData.tripType}
                         onChange={handleChange}
                         required
@@ -845,10 +891,44 @@ export default function Home() {
                         <option value="round" className="text-gray-900">Round Trip</option>
                         <option value="local" className="text-gray-900">Rental</option>
                       </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg className="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
                         </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Contact Information */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <label className="block text-gray-700 text-sm font-medium mb-1.5">Full Name *</label>
+                      <div className="relative">
+                        <FaUserTie className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                        <input
+                          type="text"
+                          name="name"
+                          className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                          placeholder="Enter your name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 text-sm font-medium mb-1.5">Phone Number *</label>
+                      <div className="relative">
+                        <FaPhoneAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                          placeholder="Enter phone number"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          required
+                        />
                       </div>
                     </div>
                   </div>
@@ -857,7 +937,7 @@ export default function Home() {
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105 disabled:opacity-75 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-base shadow-lg transform hover:scale-105 disabled:opacity-75 disabled:cursor-not-allowed"
                     disabled={emailStatus.status === 'loading'}
                   >
                     {emailStatus.status === 'loading' ? 'SENDING...' : 'BOOK NOW'}
@@ -865,7 +945,7 @@ export default function Home() {
                   
                   {/* Status Messages */}
                   {emailStatus.status !== 'idle' && (
-                    <div className={`mt-4 p-4 rounded-lg ${emailStatus.status === 'success' ? 'bg-green-100 text-green-800' : emailStatus.status === 'error' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+                    <div className={`mt-3 p-3 rounded-lg ${emailStatus.status === 'success' ? 'bg-green-100 text-green-800' : emailStatus.status === 'error' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
                       {emailStatus.message}
                     </div>
                   )}
@@ -985,7 +1065,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1025,7 +1108,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1065,7 +1151,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1105,7 +1194,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1145,7 +1237,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1185,7 +1280,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1225,7 +1323,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1265,7 +1366,10 @@ export default function Home() {
                     <p className="font-semibold">Available</p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300">
+                <button 
+                  onClick={openBookingModal}
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2.5 rounded-lg font-medium transition duration-300"
+                >
                   Book Now
                 </button>
               </div>
@@ -1576,6 +1680,105 @@ export default function Home() {
 
     <WhatsAppButton />
     <ContactUsToggle />
+    
+    {/* Booking Modal */}
+    {isBookingModalOpen && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-800">Book Your Ride</h2>
+              <button 
+                onClick={() => setIsBookingModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <p className="text-sm text-gray-500 mb-6">Note: Date format is DD/MM/YYYY (e.g., 25/12/2023)</p>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-medium mb-1.5">Trip Type *</label>
+                <div className="relative">
+                  <select 
+                    name="tripType"
+                    className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                    value={formData.tripType}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>Select</option>
+                    <option value="oneway">One Way</option>
+                    <option value="round">Round Trip</option>
+                    <option value="local">Rental</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg className="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-1.5">Full Name *</label>
+                  <div className="relative">
+                    <FaUserTie className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                    <input
+                      type="text"
+                      name="name"
+                      className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                      placeholder="Enter your name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-medium mb-1.5">Phone Number *</label>
+                  <div className="relative">
+                    <FaPhoneAlt className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      className="w-full p-3 pl-8 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
+                      placeholder="Enter phone number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {renderFormFields()}
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 text-base shadow-lg transform hover:scale-105 disabled:opacity-75 disabled:cursor-not-allowed"
+                disabled={emailStatus.status === 'loading'}
+              >
+                {emailStatus.status === 'loading' ? 'SENDING...' : 'BOOK NOW'}
+              </button>
+
+              {/* Status Messages */}
+              {emailStatus.status !== 'idle' && (
+                <div className={`mt-3 p-3 rounded-lg ${emailStatus.status === 'success' ? 'bg-green-100 text-green-800' : emailStatus.status === 'error' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+                  {emailStatus.message}
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    )}
   </div>
   );
 }
