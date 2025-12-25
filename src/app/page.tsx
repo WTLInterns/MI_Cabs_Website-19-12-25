@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaHeart, FaWhatsapp } from 'react-icons/fa';
 import { FaTaxi, FaCar, FaShuttleVan, FaStar, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaChevronLeft, FaChevronRight, FaMoneyBillWave, FaClock, FaUserTie, FaShieldAlt, FaArrowRight, FaBus, FaComments } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 // Components
 import ContactUsToggle from '@/components/sections/ContactUsToggle';
@@ -199,6 +200,7 @@ export default function Home() {
     phone: '',
     message: ''
   });
+  const [emailStatus, setEmailStatus] = useState<{status: 'idle' | 'loading' | 'success' | 'error', message: string}>({status: 'idle', message: ''});
 
   useEffect(() => {
     setIsMounted(true);
@@ -228,10 +230,63 @@ export default function Home() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+    setEmailStatus({status: 'loading', message: 'Sending your booking request...'});
+    
+    try {
+      // Initialize EmailJS with your public key from environment variables
+      await emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+      
+      // Prepare template parameters with form data
+      const templateParams = {
+        from_name: formData.name || 'Anonymous User',
+        to_email: process.env.NEXT_PUBLIC_OFFICIAL_EMAIL || 'your-email@example.com', // Your official email
+        trip_type: formData.tripType,
+        pickup_location: formData.pickup,
+        drop_location: formData.drop || 'N/A', // For round trip, drop is not applicable
+        pickup_date: formData.date,
+        pickup_time: formData.time,
+        return_date: formData.returnDate || 'N/A', // For one-way trip, return date is not applicable
+        return_time: formData.returnTime || 'N/A', // For one-way trip, return time is not applicable
+        rental_days: formData.rentalDays,
+        user_email: formData.email || 'N/A',
+        user_phone: formData.phone || 'N/A',
+        special_instructions: formData.message || 'N/A',
+        reply_to: formData.email || process.env.NEXT_PUBLIC_OFFICIAL_EMAIL || 'your-email@example.com'
+      };
+      
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '', // Your Service ID
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '', // Your Template ID
+        templateParams
+      );
+      
+      if (response.status === 200) {
+        setEmailStatus({status: 'success', message: 'Your booking request has been sent successfully! We will contact you shortly.'});
+        // Reset form after successful submission
+        setFormData({
+          tripType: 'round',
+          pickup: '',
+          drop: '',
+          date: '',
+          time: '',
+          returnDate: '',
+          returnTime: '',
+          rentalDays: '1',
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        throw new Error(`Email sending failed with status: ${response.status}`);
+      }
+    } catch (error: any) {
+      console.error('Email sending error:', error);
+      setEmailStatus({status: 'error', message: `Failed to send booking request: ${error?.message || 'Unknown error'}`});
+    }
   };
 
   const renderFormFields = () => {
@@ -628,7 +683,7 @@ export default function Home() {
     { 
       icon: <FaTaxi className="text-4xl text-blue-900 mb-4" />,
       title: 'Cheapest Rates',
-      description: 'M.I Cab Services in Pune Offers Cab in Pune at cheaper & Affordable Rates'
+      description: 'MI CabServices in Pune Offers Cab in Pune at cheaper & Affordable Rates'
     },
     { 
       icon: <FaCar className="text-4xl text-blue-900 mb-4" />,
@@ -638,7 +693,7 @@ export default function Home() {
     { 
       icon: <FaShuttleVan className="text-4xl text-blue-900 mb-4" />,
       title: 'Best Cabs',
-      description: 'M.I Taxi Services in Pune offers clean, new & Sanitized cabs on rent in Pune'
+      description: 'MI Taxi Services in Pune offers clean, new & Sanitized cabs on rent in Pune'
     },
     { 
       icon: <FaBus className="text-4xl text-blue-900 mb-4" />,
@@ -746,7 +801,7 @@ export default function Home() {
               </h1>
               
               <p className="text-lg mb-4 lg:mb-6 text-blue-100">
-                Are you looking for cab services in Pune, then M.I Cabs is one of the best option for you. 
+                Are you looking for cab services in Pune, then MI Cabs is one of the best option for you. 
                 Get all types of rental vehicles at economical and affordable rates. Get heavy discount on 
                 advance booking of a cab for MI CABS Pune
               </p>
@@ -802,10 +857,18 @@ export default function Home() {
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105"
+                    className="w-full bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition duration-300 text-lg shadow-lg transform hover:scale-105 disabled:opacity-75 disabled:cursor-not-allowed"
+                    disabled={emailStatus.status === 'loading'}
                   >
-                    BOOK NOW
+                    {emailStatus.status === 'loading' ? 'SENDING...' : 'BOOK NOW'}
                   </button>
+                  
+                  {/* Status Messages */}
+                  {emailStatus.status !== 'idle' && (
+                    <div className={`mt-4 p-4 rounded-lg ${emailStatus.status === 'success' ? 'bg-green-100 text-green-800' : emailStatus.status === 'error' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+                      {emailStatus.message}
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -907,7 +970,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
-                    <p className="font-semibold text-blue-900">12 Rs/Km</p>
+                    <p className="font-semibold text-blue-900">13 Rs/Km</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Fuel Type</p>
@@ -987,7 +1050,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
-                    <p className="font-semibold text-blue-900">13 Rs/Km</p>
+                    <p className="font-semibold text-blue-900">14 Rs/Km</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Fuel Type</p>
@@ -1027,7 +1090,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
-                    <p className="font-semibold text-blue-900">19 Rs/Km</p>
+                    <p className="font-semibold text-blue-900">20 Rs/Km</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Fuel Type</p>
@@ -1147,7 +1210,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
-                    <p className="font-semibold text-blue-900">16 Rs/Km</p>
+                    <p className="font-semibold text-blue-900">25 Rs/Km</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Fuel Type</p>
@@ -1187,7 +1250,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Fare Rate</p>
-                    <p className="font-semibold text-blue-900">20 Rs/Km</p>
+                    <p className="font-semibold text-blue-900">21 Rs/Km</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Fuel Type</p>
@@ -1432,7 +1495,7 @@ export default function Home() {
                 <FaMoneyBillWave className="text-blue-600 text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Cheapest Rates</h3>
-              <p className="text-gray-600">M.I Cab Services in Pune offers cab in Pune at cheaper & affordable rates.</p>
+              <p className="text-gray-600">MI CabServices in Pune offers cab in Pune at cheaper & affordable rates.</p>
             </div>
 
             {/* Card 2 */}
@@ -1450,7 +1513,7 @@ export default function Home() {
                 <FaTaxi className="text-blue-600 text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Best Cabs</h3>
-              <p className="text-gray-600">M.I Taxi Services in Pune offers clean, new & sanitized cabs on rent in Pune.</p>
+              <p className="text-gray-600">MI Taxi Services in Pune offers clean, new & sanitized cabs on rent in Pune.</p>
             </div>
 
             {/* Card 4 */}

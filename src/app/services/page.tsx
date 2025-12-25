@@ -8,7 +8,7 @@ export default function ServicesPage() {
     {
       icon: <FaPlane className="text-5xl text-blue-900 mb-4" />,
       title: "Airport Pickup and Drop",
-      description: "M.I CABS offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, M.I CABS ensures a smooth and hassle-free journey for its customers.",
+      description: "MI CABS offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, MI CABS ensures a smooth and hassle-free journey for its customers.",
       features: [
         "Prompt Airport Pickup and Drop-off",
         "Wide Range of Vehicle Options",
@@ -22,7 +22,7 @@ export default function ServicesPage() {
     {
       icon: <FaMountain className="text-5xl text-blue-900 mb-4" />,
       title: "Hillstation Packages",
-      description: "Experience the breathtaking beauty of nature with M.I CABS Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
+      description: "Experience the breathtaking beauty of nature with MI CABS Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
       features: [
         "Diverse range of hill station destinations",
         "Customizable packages",
@@ -34,7 +34,7 @@ export default function ServicesPage() {
     {
       icon: <FaRoute className="text-5xl text-blue-900 mb-4" />,
       title: "Outstation Booking",
-      description: "M.I CABS offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, M.I CABS ensures a seamless and enjoyable journey to your desired destination.",
+      description: "MI CABS offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, MI CABS ensures a seamless and enjoyable journey to your desired destination.",
       features: [
         "Wide Range of Vehicles",
         "Professional and Experienced Drivers",
