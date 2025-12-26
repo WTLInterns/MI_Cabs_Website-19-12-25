@@ -9,7 +9,7 @@ export default function AboutUsPage() {
       <div className="relative h-28 bg-white">
         <div className="absolute inset-0 bg-white/50 flex items-center justify-center">
           <div className="text-center text-black px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About MI CABS</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">About M.I  CABS</h1>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@ export default function AboutUsPage() {
             <div className="mb-12">
               <Image
                 src="/images/AboutUs.jpg"
-                alt="MI CABS"
+                alt="M.I  CABS"
                 width={600}
                 height={350}
                 className="w-full h-auto rounded-lg shadow-lg mb-8"
@@ -89,15 +89,15 @@ export default function AboutUsPage() {
                 transportation among travelers.
               </p>
               
-              <h2 className="text-2xl font-bold mb-4">About MI CABS</h2>
+              <h2 className="text-2xl font-bold mb-4">About M.I  CABS</h2>
               <p className="text-gray-700 mb-6">
-                MI CABS is a leading cab company providing reliable transportation services across the beautiful state of 
+                M.I  CABS is a leading cab company providing reliable transportation services across the beautiful state of 
                 Maharashtra. With years of experience in the industry, we have established ourselves as a trusted name 
                 among commuters seeking safe, comfortable, and affordable travel solutions.
               </p>
               
               <p className="text-gray-700 mb-6">
-                Our mission at MI CABS is to offer seamless mobility experiences to our valued customers, ensuring they 
+                Our mission at M.I  CABS is to offer seamless mobility experiences to our valued customers, ensuring they 
                 reach their destinations on time and in style. Whether you are a resident of Maharashtra or a visitor 
                 exploring the region, we are here to cater to all your travel needs with utmost professionalism and 
                 efficiency.
@@ -111,10 +111,10 @@ export default function AboutUsPage() {
               </p>
               
               <p className="text-gray-700 mb-6">
-                At MI CABS, we understand that punctuality is crucial, especially for travelers with busy schedules. 
+                At M.I  CABS, we understand that punctuality is crucial, especially for travelers with busy schedules. 
                 Hence, our drivers are well-versed with the roads of Maharashtra, ensuring that you reach your destination 
                 on time, every time. Whether it's a quick airport transfer, a sightseeing tour, or a long-distance 
-                journey, you can rely on MI CABS to deliver a smooth and hassle-free experience.
+                journey, you can rely on M.I  CABS to deliver a smooth and hassle-free experience.
               </p>
               
               <p className="text-gray-700 mb-6">
@@ -124,14 +124,14 @@ export default function AboutUsPage() {
               </p>
               
               <p className="text-gray-700">
-                MI CABS is dedicated to contributing positively to the transportation landscape in Maharashtra, supporting 
+                M.I  CABS is dedicated to contributing positively to the transportation landscape in Maharashtra, supporting 
                 tourism, business, and personal travel needs. Whether you are exploring the bustling cities or the serene 
                 countryside, we are here to make your journeys memorable and enjoyable.
               </p>
             </div>
             
             <div className="text-center mt-12">
-              <h2 className="text-2xl font-bold mb-6">Book Your Next Ride with MI CABS</h2>
+              <h2 className="text-2xl font-bold mb-6">Book Your Next Ride with M.I  CABS</h2>
               <p className="text-black mb-8">
                 Experience the epitome of safe, comfortable, and reliable cab services in Maharashtra.
               </p>

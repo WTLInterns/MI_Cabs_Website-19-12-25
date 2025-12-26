@@ -8,7 +8,7 @@ export default function ServicesPage() {
     {
       icon: <FaPlane className="text-5xl text-blue-900 mb-4" />,
       title: "Airport Pickup and Drop",
-      description: "MI CABS offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, MI CABS ensures a smooth and hassle-free journey for its customers.",
+      description: "M.I  CABS offers a reliable and convenient Airport Service for travelers to and from various airports. Whether you are arriving at or departing from the airport, M.I  CABS ensures a smooth and hassle-free journey for its customers.",
       features: [
         "Prompt Airport Pickup and Drop-off",
         "Wide Range of Vehicle Options",
@@ -22,7 +22,7 @@ export default function ServicesPage() {
     {
       icon: <FaMountain className="text-5xl text-blue-900 mb-4" />,
       title: "Hillstation Packages",
-      description: "Experience the breathtaking beauty of nature with MI CABS Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
+      description: "Experience the breathtaking beauty of nature with M.I  CABS Hillstation Package. Our specially crafted packages are designed to offer you an unforgettable journey through some of the most picturesque hill stations in the country.",
       features: [
         "Diverse range of hill station destinations",
         "Customizable packages",
@@ -34,7 +34,7 @@ export default function ServicesPage() {
     {
       icon: <FaRoute className="text-5xl text-blue-900 mb-4" />,
       title: "Outstation Booking",
-      description: "MI CABS offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, MI CABS ensures a seamless and enjoyable journey to your desired destination.",
+      description: "M.I  CABS offers Outstation Booking services that allow you to plan and book comfortable transportation for your trips outside the city. Whether you are looking for a weekend getaway, a family vacation, or a business trip, M.I  CABS ensures a seamless and enjoyable journey to your desired destination.",
       features: [
         "Wide Range of Vehicles",
         "Professional and Experienced Drivers",
@@ -199,7 +199,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Swift Dzire</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -239,7 +239,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Ertiga</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -279,7 +279,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Etios</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -319,7 +319,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -359,7 +359,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Kia Carens</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -399,7 +399,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Traveller</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -429,7 +429,7 @@ export default function ServicesPage() {
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-48 bg-gray-100">
                       <Image 
-                        src="/images/Innova_Hycross.jpg" 
+                        src="/images/crossnewone.png" 
                         alt="Innova Hycross" 
                         fill
                         className="object-cover"
@@ -439,7 +439,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Hycross</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -479,7 +479,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <span className="text-xs text-gray-500">MI CABS Pune</span>
+                      <span className="text-xs text-gray-500">M.I  CABS Pune</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Innova Crysta</h3>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div>
@@ -512,9 +512,9 @@ export default function ServicesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">About MI CABS Pune</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">About M.I  CABS Pune</h2>
             <p className="text-lg text-gray-700 mb-8">
-              MI CABS Pune is a car rental company which provides cars on rent in Pune at cheaper and affordable rates. 
+              M.I  CABS Pune is a car rental company which provides cars on rent in Pune at cheaper and affordable rates. 
               As a leading car rental company in Pune, we provide special discounts and premium services to ensure 
               your travel experience is comfortable and hassle-free.
             </p>

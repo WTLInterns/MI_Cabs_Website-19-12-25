@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         <p><strong>Special Instructions:</strong> ${specialInstructions || 'None'}</p>
         
         <p>We will contact you shortly to confirm your booking.</p>
-        <p>Best regards,<br/>MI Cabs Team</p>
+        <p>Best regards,<br/>M.I Cabs Team</p>
       `
     };
 

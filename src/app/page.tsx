@@ -729,7 +729,7 @@ export default function Home() {
     { 
       icon: <FaTaxi className="text-4xl text-blue-900 mb-4" />,
       title: 'Cheapest Rates',
-      description: 'MI CabServices in Pune Offers Cab in Pune at cheaper & Affordable Rates'
+      description: 'M.I  CabServices in Pune Offers Cab in Pune at cheaper & Affordable Rates'
     },
     { 
       icon: <FaCar className="text-4xl text-blue-900 mb-4" />,
@@ -739,7 +739,7 @@ export default function Home() {
     { 
       icon: <FaShuttleVan className="text-4xl text-blue-900 mb-4" />,
       title: 'Best Cabs',
-      description: 'MI Taxi Services in Pune offers clean, new & Sanitized cabs on rent in Pune'
+      description: 'M.I  Taxi Services in Pune offers clean, new & Sanitized cabs on rent in Pune'
     },
     { 
       icon: <FaBus className="text-4xl text-blue-900 mb-4" />,
@@ -843,19 +843,19 @@ export default function Home() {
             {/* Left Content */}
             <div className="lg:w-1/2 w-full max-w-2xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mb-6 leading-tight text-yellow-400">
-                MI CABS PUNE
+                M.I  CABS PUNE
               </h1>
               
               <p className="text-lg mb-4 lg:mb-6 text-blue-100">
-                Are you looking for cab services in Pune, then MI Cabs is one of the best option for you. 
+                Are you looking for cab services in Pune, then M.I Cabs is one of the best option for you. 
                 Get all types of rental vehicles at economical and affordable rates. Get heavy discount on 
-                advance booking of a cab for MI CABS Pune
+                advance booking of a cab for M.I  CABS Pune
               </p>
               
               <div className="bg-yellow-100 text-yellow-900 p-4 rounded-lg mb-4 lg:mb-6 border-l-4 border-yellow-500">
                 <p className="font-bold text-lg mb-1">Special Discount On Pune Mumbai Cabs</p>
                 <p className="text-sm">
-                  MI Cabs Pune offers special discount on booking of Pune Mumbai Cabs. 
+                  M.I Cabs Pune offers special discount on booking of Pune Mumbai Cabs. 
                   Book a cab from Pune to Mumbai or Mumbai to Pune and get cabs at affordable rates.
                 </p>
               </div>
@@ -1599,7 +1599,7 @@ export default function Home() {
                 <FaMoneyBillWave className="text-blue-600 text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Cheapest Rates</h3>
-              <p className="text-gray-600">MI CabServices in Pune offers cab in Pune at cheaper & affordable rates.</p>
+              <p className="text-gray-600">M.I  CabServices in Pune offers cab in Pune at cheaper & affordable rates.</p>
             </div>
 
             {/* Card 2 */}
@@ -1617,7 +1617,7 @@ export default function Home() {
                 <FaTaxi className="text-blue-600 text-2xl" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Best Cabs</h3>
-              <p className="text-gray-600">MI Taxi Services in Pune offers clean, new & sanitized cabs on rent in Pune.</p>
+              <p className="text-gray-600">M.I  Taxi Services in Pune offers clean, new & sanitized cabs on rent in Pune.</p>
             </div>
 
             {/* Card 4 */}

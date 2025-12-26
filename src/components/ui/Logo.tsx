@@ -42,7 +42,7 @@ const Logo: FC<LogoProps> = ({
         <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-md">
           <Image 
             src="/images/logo.jpg" 
-            alt="MI CABS Logo"
+            alt="M.I  CABS Logo"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 48px, 64px"
@@ -52,7 +52,7 @@ const Logo: FC<LogoProps> = ({
       </div>
       <div className={`${currentSize.spacing} flex flex-col justify-center`}>
         <h1 className={`${currentSize.text} text-blue-900 leading-tight tracking-tight`}>
-          MI CABS
+          M.I  CABS
         </h1>
         {showTagline && (
           <p className={`${currentSize.tagline} text-gray-600 mt-0.5`}>

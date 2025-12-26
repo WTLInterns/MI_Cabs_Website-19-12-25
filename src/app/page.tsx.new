@@ -124,10 +124,10 @@ const Home = () => {
             {/* Left Content */}
             <div className="lg:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                MI CABS PUNE
+                M.I  CABS PUNE
               </h1>
               <p className="text-lg mb-6 text-blue-100">
-                Are you looking for cab services in Pune? MI Cabs is one of the best options for you. 
+                Are you looking for cab services in Pune? M.I Cabs is one of the best options for you. 
                 Get all types of rental vehicles at economical and affordable rates.
               </p>
               
@@ -253,7 +253,7 @@ const Home = () => {
       <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose MI Cabs?</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose M.I Cabs?</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
               We provide reliable, safe, and comfortable cab services with professional drivers and well-maintained vehicles.
             </p>
